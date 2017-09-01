@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript"
+          src="//media.twiliocdn.com/sdk/js/client/v1.4/twilio.min.js"></script>
+  <script type="text/javascript"
+          src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <title>Twilio Tester</title>
+</head>
+<body>
+  <form action="#" id="say-form" name="say-form">
+    <h1>Twilio Tester</h1>
+    <hr>
+    <h2>Text-To-Speech</h2>
+    <p><textarea name="say" id="say" cols="30" rows="10" disabled placeholder="What would you like to say?"></textarea></p>
+    <p><label><input type="radio" name="voice" id="voice-male" value="1" disabled default> male</label></p>
+    <p><label><input type="radio" name="voice" id="voice-female" value="2" disabled> female</label></p>
+    <p><input type="submit" value="Say" disabled></p>
+    <hr>
+  </form>
+
+  <script>
+    // The keys in this object are for reference, but not necessary right now.
+    var auth = {
+      APP_SID:     '', 
+      AUTH_TOKEN:  '', 
+      ACCOUNT_SID: ''
+    };
+
+    // Text-to-Speech form
+    $sayForm = $('#say-form');
+
+    // When the page loads, it writes your Twilio creds to the auth object.
+    // Set your Twilio credentials in secrets.json and it will write them to the
+    // auth object when the page loads. The form inputs will be disabled until
+    // the the secrets.json file is retrieved (probably very quick). The secrets
+    // file is in the .gitignore file by default.
+    $(function() {
+      $.get('secrets.json', function(secrets) {
+        _.extend(auth, secrets);
+        $sayForm.find('input, textarea').prop('disabled', false);
+      });
+    });
+
+    // ...
+  </script>
+</body>
+</html>
