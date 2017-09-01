@@ -39,9 +39,11 @@
 
     // When the page loads, it writes your Twilio creds to the auth object.
     // Set your Twilio credentials in secrets.json and it will write them to the
-    // auth object when the page loads. The form inputs will be disabled until
-    // the the secrets.json file is retrieved (probably very quick). The secrets
-    // file is in the .gitignore file by default.
+    // auth object when the page loads. Easiest way is to rename the
+    // secrets.json.example file to secrets.json and modify that directly. The
+    // form inputs will be disabled until the secrets.json file is retrieved
+    // (probably very quickly). The secrets.json file is listed in the 
+    // .gitignore file by default.
     $(function() {
       $.get('secrets.json', function(secrets) {
         _.extend(auth, secrets);
